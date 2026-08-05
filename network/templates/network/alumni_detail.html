@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ alumni.name }}</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#f4f7fb;
+            margin:0;
+            padding:0;
+        }
+
+        .container{
+            width:90%;
+            max-width:800px;
+            margin:40px auto;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:16px;
+            box-shadow:0 4px 10px rgba(0,0,0,.08);
+            margin-bottom:25px;
+        }
+
+        h1{
+            color:#111827;
+            margin-bottom:8px;
+        }
+
+        .title{
+            color:#2563eb;
+            font-weight:bold;
+            margin-bottom:12px;
+        }
+
+        .section{
+            margin-top:20px;
+        }
+
+        .skill{
+            display:inline-block;
+            background:#e0e7ff;
+            color:#1e3a8a;
+            padding:6px 12px;
+            border-radius:999px;
+            margin:4px;
+            font-size:14px;
+        }
+
+        .mentor-card{
+            border:1px solid #e5e7eb;
+            border-radius:12px;
+            padding:15px;
+            margin-top:12px;
+        }
+
+        a{
+            text-decoration:none;
+            color:#2563eb;
+        }
+
+        .back{
+            display:inline-block;
+            margin-bottom:20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div style="
+    background:#111827;
+    color:white;
+    padding:16px 0;
+    margin-bottom:30px;
+">
+
+    <div style="
+        width:90%;
+        max-width:1100px;
+        margin:0 auto;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+    ">
+
+        <div style="font-size:22px; font-weight:bold;">
+            AlumniConnect
+        </div>
+
+        <div style="font-size:14px; color:#d1d5db;">
+            Graph-Powered Alumni Networking Platform
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <a class="back" href="/">← Back to Directory</a>
+
+    <div class="card">
+
+        <h1>{{ alumni.name }}</h1>
+
+        <div class="title">{{ alumni.title }}</div>
+
+        <p>📍 {{ alumni.location }}</p>
+
+        <p>🏢 {{ alumni.company }}</p>
+
+        <div class="section">
+
+            <h3>Skills</h3>
+
+            {% for skill in alumni.skills %}
+                <span class="skill">{{ skill }}</span>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Mentorship Network (1–2 Hops)</h2>
+
+        {% if recommendations %}
+
+            {% for mentor in recommendations %}
+
+                <div class="mentor-card">
+
+                    <strong>{{ mentor.name }}</strong><br>
+
+                    {{ mentor.title }}
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No mentorship connections found.</p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
